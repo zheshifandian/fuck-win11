@@ -1,0 +1,39 @@
+Windows Registry Editor Version 5.00
+
+[HKLM\MT_DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost]
+"EnableWebContentEvaluation"=dword:00000000
+"PreventOverride"=dword:00000000
+
+[HKLM\MT_DEFAULT\SOFTWARE\Policies\Microsoft\Edge]
+"SmartScreenEnabled"=dword:00000000
+
+[HKLM\MT_NTUSER\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost]
+"EnableWebContentEvaluation"=dword:00000000
+"PreventOverride"=dword:00000000
+
+[HKLM\MT_NTUSER\SOFTWARE\Policies\Microsoft\Edge]
+"SmartScreenEnabled"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Microsoft\Windows Security Health\State]
+"AppAndBrowser_StoreAppsSmartScreenOff"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost]
+"SmartScreenEnabled"="Off"
+
+[HKLM\MT_SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer]
+"SmartScreenEnabled"="Off"
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Internet Explorer\PhishingFilter]
+"EnabledV9"=dword:00000000
+"PreventOverride"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter]
+"EnabledV9"=dword:00000000
+"PreventOverride"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows\System]
+"EnableSmartScreen"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows Defender\SmartScreen]
+"ConfigureAppInstallControl"="Anywhere"
+"ConfigureAppInstallControlEnabled"=dword:00000000

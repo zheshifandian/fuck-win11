@@ -1,0 +1,94 @@
+Windows Registry Editor Version 5.00
+
+[HKLM\MT_SOFTWARE\Classes\*\shell\Notepad]
+@="用记事本打开"
+[HKLM\MT_SOFTWARE\Classes\*\shell\Notepad\Command]
+@="notepad %1"
+
+[HKLM\MT_SOFTWARE\Classes\*\shell\runas]
+@="管理员取得所有权"
+"NoWorkingDirectory"=""
+[HKLM\MT_SOFTWARE\Classes\*\shell\runas\Command]
+@="cmd.exe /c takeown /f \"%1\" && icacls \"%1\" /grant administrators:F"
+"IsolatedCommand"="cmd.exe /c takeown /f \"%1\" && icacls \"%1\" /grant administrators:F"
+
+[HKLM\MT_SOFTWARE\Classes\directory\background\shell\cmd]
+@="@shell32.dll,-8506"
+"Extended"=""
+"HideBasedOnVelocityId"=dword:00639bc8
+"NoWorkingDirectory"=""
+[HKLM\MT_SOFTWARE\Classes\directory\background\shell\cmd\command]
+@="cmd.exe /s /k pushd \"%V\""
+
+[HKLM\MT_SOFTWARE\Classes\directory\background\shell\Powershell]
+@="@shell32.dll,-8508"
+"Extended"=""
+"NoWorkingDirectory"=""
+"ShowBasedOnVelocityId"=dword:00639bc8
+[HKLM\MT_SOFTWARE\Classes\directory\background\shell\Powershell\command]
+@="powershell.exe -noexit -command Set-Location -literalPath '%V'"
+
+[HKLM\MT_SOFTWARE\Classes\directory\background\shell\RestartExplorer]
+@="重启资源管理器"
+[HKLM\MT_SOFTWARE\Classes\directory\background\shell\RestartExplorer\Command]
+@="tskill explorer"
+
+[HKLM\MT_SOFTWARE\Classes\directory\background\shell\runas]
+@="@shell32.dll,-8506"
+"NoWorkingDirectory"=""
+"icon"="cmd.exe"
+"ShowBasedOnVelocityId"=dword:00639bc8
+[HKLM\MT_SOFTWARE\Classes\directory\background\shell\runas\command]
+@="cmd.exe /s /k pushd \"%V\""
+
+[HKLM\MT_SOFTWARE\Classes\directory\shell\cmd]
+@="@shell32.dll,-8506"
+"HideBasedOnVelocityId"=dword:00639bc8
+"NoWorkingDirectory"=""
+[HKLM\MT_SOFTWARE\Classes\directory\shell\cmd\command]
+@="cmd.exe /s /k pushd \"%V\""
+
+[HKLM\MT_SOFTWARE\Classes\directory\shell\Powershell]
+@="@shell32.dll,-8508"
+"Extended"=""
+"NoWorkingDirectory"=""
+"ShowBasedOnVelocityId"=dword:00639bc8
+[HKLM\MT_SOFTWARE\Classes\directory\shell\Powershell\command]
+@="powershell.exe -noexit -command Set-Location -literalPath '%V'"
+
+[HKLM\MT_SOFTWARE\Classes\directory\shell\runas]
+@="管理员取得所有权"
+"NoWorkingDirectory"=""
+[HKLM\MT_SOFTWARE\Classes\directory\shell\runas\Command]
+@="cmd.exe /c takeown /f \"%1\" /r /d y && icacls \"%1\" /grant administrators:F /t"
+"IsolatedCommand"="cmd.exe /c takeown /f \"%1\" /r /d y && icacls \"%1\" /grant administrators:F /t"
+
+[HKLM\MT_SOFTWARE\Classes\drive\shell\Powershell]
+@="@shell32.dll,-8508"
+"Extended"=""
+"NoWorkingDirectory"=""
+"ShowBasedOnVelocityId"=dword:00639bc8
+[HKLM\MT_SOFTWARE\Classes\drive\shell\Powershell\command]
+@="powershell.exe -noexit -command Set-Location -literalPath '%V'"
+
+[HKLM\MT_SOFTWARE\Classes\drive\shell\cmd]
+@="@shell32.dll,-8506"
+"HideBasedOnVelocityId"=dword:00639bc8
+"NoWorkingDirectory"=""
+[HKLM\MT_SOFTWARE\Classes\drive\shell\cmd\command]
+@="cmd.exe /s /k pushd \"%V\""
+
+[HKLM\MT_SOFTWARE\Classes\exefile\shell\open\command]
+@="\"%1\" %*"
+"IsolatedCommand"="\"%1\" %*"
+
+[HKLM\MT_SOFTWARE\Classes\exefile\shell\runas]
+"HasLUAShield"=""
+[HKLM\MT_SOFTWARE\Classes\exefile\shell\runas\command]
+@="\"%1\" %*"
+"IsolatedCommand"="\"%1\" %*"
+
+[HKLM\MT_SOFTWARE\Classes\exefile\shell\TakeAuthority]
+@="管理员取得所有权"
+[HKLM\MT_SOFTWARE\Classes\exefile\shell\TakeAuthority\Command]
+@="cmd.exe /c takeown /f \"%1\" && icacls \"%1\" /grant administrators:F"

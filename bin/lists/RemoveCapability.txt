@@ -1,0 +1,9 @@
+App.StepsRecorder
+App.Support.QuickAssist
+DirectX.Configuration.Database
+Hello.Face.Migration.18967
+Language.Handwriting~~~zh-CN
+MathRecognizer
+Media.WindowsMediaPlayer
+OneCoreUAP.OneSync
+OpenSSH.Client

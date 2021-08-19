@@ -1,0 +1,104 @@
+Windows Registry Editor Version 5.00
+
+[HKLM\MT_DEFAULT\SOFTWARE\Microsoft\Windows Security Health\State]
+"AccountProtection_MicrosoftAccount_Disconnected"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Microsoft\Windows Defender Security Center\Notifications]
+"DisableNotifications"=dword:00000001
+"DisableEnhancedNotifications"=dword:00000001
+
+[HKLM\MT_NTUSER\SOFTWARE\Microsoft\Windows Security Health\State]
+"AccountProtection_MicrosoftAccount_Disconnected"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Microsoft\Windows Defender]
+"DisableAntiSpyware"=dword:00000001
+"DisableAntiVirus"=dword:00000001
+
+[HKLM\MT_SOFTWARE\Microsoft\Windows Defender\Features]
+"TamperProtection"=dword:00000000
+"TamperProtectionSource"=dword:00000002
+
+[HKLM\MT_SOFTWARE\Microsoft\Windows Defender\Signature Updates]
+"FirstAuGracePeriod"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Microsoft\Windows Defender\UX Configuration]
+"DisablePrivacyMode"=dword:00000001
+
+[HKLM\MT_SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run]
+"SecurityHealth"=hex:03,00,00,00,00,00,00,00,00,00,00,00
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\MRT]
+"DontOfferThroughWUAU"=dword:00000001
+"DontReportInfectionInformation"=dword:00000001
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows Defender Security Center\Systray]
+"HideSystray"=dword:00000001
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows Defender]
+"DisableAntiSpyware"=dword:00000001
+"PUAProtection"=dword:00000000
+"RandomizeScheduleTaskTimes"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows Defender\Exclusions]
+"DisableAutoExclusions"=dword:00000001
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows Defender\MpEngine]
+"MpEnablePus"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows Defender\Quarantine]
+"LocalSettingOverridePurgeItemsAfterDelay"=dword:00000000
+"PurgeItemsAfterDelay"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection]
+"DisableBehaviorMonitoring"=dword:00000001
+"DisableIOAVProtection"=dword:00000001
+"DisableOnAccessProtection"=dword:00000001
+"DisableRealtimeMonitoring"=dword:00000001
+"DisableRoutinelyTakingAction"=dword:00000001
+"DisableScanOnRealtimeEnable"=dword:00000001
+"DisableScriptScanning"=dword:00000001
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows Defender\Remediation]
+"Scan_ScheduleDay"=dword:00000008
+"Scan_ScheduleTime"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows Defender\Reporting]
+"AdditionalActionTimeOut"=dword:00000000
+"CriticalFailureTimeOut"=dword:00000000
+"DisableEnhancedNotifications"=dword:00000001
+"DisableGenericRePorts"=dword:00000001
+"NonCriticalTimeOut"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows Defender\Scan]
+"AvgCPULoadFactor"=dword:00000010
+"DisableArchiveScanning"=dword:00000001
+"DisableCatchupFullScan"=dword:00000001
+"DisableCatchupQuickScan"=dword:00000001
+"DisableRemovableDriveScanning"=dword:00000001
+"DisableRestorePoint"=dword:00000001
+"DisableScanningMappedNetworkDrivesForFullScan"=dword:00000001
+"DisableScanningNetworkFiles"=dword:00000001
+"PurgeItemsAfterDelay"=dword:00000000
+"ScanOnlyIfIdle"=dword:00000000
+"ScanParameters"=dword:00000000
+"ScheduleDay"=dword:00000008
+"ScheduleTime"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows Defender\Signature Updates]
+"DisableUpdateOnStartupWithoutEngine"=dword:00000001
+"ScheduleDay"=dword:00000008
+"ScheduleTime"=dword:00000000
+"SignatureUpdateCatchupInterval"=dword:00000000
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows Defender\SpyNet]
+"DisableBlockAtFirstSeen"=dword:00000001
+"LocalSettingOverrideSpynetReporting"=dword:00000000
+"SpyNetReporting"=dword:00000000
+"SpyNetReportingLocation"=hex(7):30,00,00,00,00,00
+"SubmitSamplesConsent"=dword:00000002
+
+[HKLM\MT_SYSTEM\ControlSet001\Control\WMI\Autologger\DefenderApiLogger]
+"Start"=dword:00000000
+
+[HKLM\MT_SYSTEM\ControlSet001\Control\WMI\Autologger\DefenderAuditLogger]
+"Start"=dword:00000000

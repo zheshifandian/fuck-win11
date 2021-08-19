@@ -1,0 +1,10 @@
+MediaPlayback
+MSRDC-Infrastructure
+Printing-Foundation-InternetPrinting-Client
+Printing-PrintToPDFServices-Features
+Printing-XPSServices-Features
+SmbDirect
+WCF-Services45
+WCF-TCP-PortSharing45
+Windows-Defender-Default-Definitions
+WorkFolders-Client

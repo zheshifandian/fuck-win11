@@ -1,0 +1,13 @@
+Windows Registry Editor Version 5.00
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows\Device Metadata]
+"PreventDeviceMetadataFromNetwork"=dword:00000001
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows\DriverSearching]
+"DontPromptForWindowsUpdate"=dword:00000001
+"DontSearchWindowsUpdate"=dword:00000001
+"DriverUpdateWizardWuSearchEnabled"=dword:00000000
+"SearchOrderConfig"=dword:00000001
+
+[HKLM\MT_SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate]
+"ExcludeWUDriversInQualityUpdate"=dword:00000001
