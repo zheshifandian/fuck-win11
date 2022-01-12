@@ -327,6 +327,10 @@ Windows Registry Editor Version 5.00
 [HKLM\MT_SYSTEM\ControlSet001\Services\SessionEnv]
 "Start"=dword:00000004
 
+[HKLM\MT_SYSTEM\ControlSet001\Services\SgrmBroker]
+"DelayedAutoStart"=dword:00000004
+"Start"=dword:00000004
+
 [HKLM\MT_SYSTEM\ControlSet001\Services\SNMPTRAP]
 "Start"=dword:00000004
 

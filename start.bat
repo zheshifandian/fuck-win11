@@ -31,6 +31,9 @@ mkdir %~dp0mount 2>NUL
 goto :eof
 
 :Prepare-Addition
+if not exist %Addition%\Registry ( mkdir %Addition%\Registry 2>NUL )
+if not exist %Addition%\Runtime\DirectX ( mkdir %Addition%\Runtime\DirectX 2>NUL )
+if not exist %Addition%\Runtime\VC++ ( mkdir %Addition%\Runtime\VC++ 2>NUL )
 if not exist %Addition%\Registry\*.reg (
     echo Preparing Registry Files
     mkdir %~dp0tmp 2>NUL
