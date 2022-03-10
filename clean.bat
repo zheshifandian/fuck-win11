@@ -88,6 +88,7 @@ goto :eof
 xcopy /e /s "%Bin%\Addition" "%MT-Windows%\Addition\" /Y >NUL
 %z7% x "%MT-Windows%\Addition\Runtime\DirectX\DirectX.exe" -o"%MT-Windows%\Addition\Runtime\DirectX" -aoa >NUL 2>&1
 del /q /s "%Bin%\Addition\Registry" >NUL 2>&1
+del /q /s "%MT-Windows%\Addition\Runtime\DirectX\DirectX.exe" >NUL 2>&1
 goto :eof
 
 :Export-ESD
