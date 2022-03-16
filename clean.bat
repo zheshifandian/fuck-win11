@@ -52,13 +52,12 @@ call :Copy-Addition
 call :Import-Reg "%Registry%"
 call :Remove-Feature
 call :ResetBase
-call :Capture-Image %Build%\installa.wim "Windows 11 Pro" %Bin%\lists\ExclusionList.ini
+call :Capture-Image %Build%\install.wim "Windows 11 Pro" %Bin%\lists\ExclusionList.ini
 call :UnMount
 
 echo Final Processing
-call :Wimlib-Imagex-Command %Build%\installa.wim "add '%Build%\winre.wim' '\windows\system32\recovery\winre.wim'"
-call :Wimlib-Imagex-Command %Build%\installa.wim "add '%Packs%\NetFX35' '\windows\Addition\NetFX35'"
-call :Export-WIM %Build%\installa.wim 1 %Build%\install.wim
+call :Wimlib-Imagex-Command %Build%\install.wim "add '%Build%\winre.wim' '\windows\system32\recovery\winre.wim'"
+call :Wimlib-Imagex-Command %Build%\install.wim "add '%Packs%\NetFX35' '\windows\Addition\NetFX35'"
 call :Wimlib-Imagex-Info "%Build%\install.wim" "1" "Windows 11 Pro" "Windows 11 Pro" "Professional" "Windows 11 Professional"
 call :Wimlib-Imagex-Optimize %Build%\install.wim lzx
 call :Export-ESD %Build%\install.wim %Build%\install.esd
