@@ -4,7 +4,7 @@ ver|find "5.">NUL&&goto :Admin
 mshta vbscript:createobject("shell.application").shellexecute("%~s0","goto :Admin","","runas",1)(window.close)&goto :eof
 :Admin
 
-SET "NSudo=%SystemRoot%\Addition\NSudo.exe"
+SET "Sudo=%SystemRoot%\Addition\NSudo.exe"
 SET "Registry=%SystemRoot%\Addition\Registry"
 SET "Runtime=%SystemRoot%\Addition\Runtime"
 
@@ -21,12 +21,12 @@ Dism /Online /Set-ReservedStorageState /State:Disabled /Quiet
 rmdir /q /s "%SystemRoot%\Addition" 2>NUL
 powercfg /h off
 
-call cmd /c %NSudo% -U:T -P:E REG DELETE HKLM\SAM\SAM\Domains\Account\Users\Names\DefaultAccount /f >NUL
-call cmd /c %NSudo% -U:T -P:E REG DELETE HKLM\SAM\SAM\Domains\Account\Users\Names\WDAGUtilityAccount /f >NUL
-call cmd /c %NSudo% -U:T -P:E REG DELETE HKLM\SAM\SAM\Domains\Account\Users\000001F7 /f >NUL
-call cmd /c %NSudo% -U:T -P:E REG DELETE HKLM\SAM\SAM\Domains\Account\Users\000001F8 /f >NUL
-REG DELETE HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /va /f >NUL
-REG DELETE HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /va /f >NUL
+call cmd /c %Sudo% -U:T -P:E REG DELETE "HKLM\SAM\SAM\Domains\Account\Users\Names\DefaultAccount" /f >NUL
+call cmd /c %Sudo% -U:T -P:E REG DELETE "HKLM\SAM\SAM\Domains\Account\Users\Names\WDAGUtilityAccount" /f >NUL
+call cmd /c %Sudo% -U:T -P:E REG DELETE "HKLM\SAM\SAM\Domains\Account\Users\000001F7" /f >NUL
+call cmd /c %Sudo% -U:T -P:E REG DELETE "HKLM\SAM\SAM\Domains\Account\Users\000001F8" /f >NUL
+REG DELETE "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /va /f >NUL
+REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /va /f >NUL
 REG ADD "HKCU\SOFTWARE\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
 REG ADD "HKLM\SOFTWARE\Classes\Applications\photoviewer.dll\shell\open\command" /ve /t REG_EXPAND_SZ /d "%%SystemRoot%%\System32\rundll32.exe \"%%ProgramFiles%%\Windows Photo Viewer\PhotoViewer.dll\", ImageView_Fullscreen %%1" /f >NUL
 REG ADD "HKLM\SOFTWARE\Classes\Applications\photoviewer.dll\shell\print\command" /ve /t REG_EXPAND_SZ /d "%%SystemRoot%%\System32\rundll32.exe \"%%ProgramFiles%%\Windows Photo Viewer\PhotoViewer.dll\", ImageView_Fullscreen %%1" /f >NUL
