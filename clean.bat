@@ -28,6 +28,7 @@ echo Processing WinRE.wim
 call :Mount-Image %Image%\winre.wim 1
 call :Update-ServicingStackDynamicUpdate
 call :Update-SafeOSDynamicUpdate
+call :Update-CumulativeUpdate
 call :ResetBase
 call :Capture-Image %Build%\winre.wim "Microsoft Windows Recovery Environment (x64)" %Lists%\ExclusionList.ini /Bootable
 call :UnMount
