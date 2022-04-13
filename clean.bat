@@ -217,11 +217,15 @@ goto :eof
 
 :Update-CumulativeUpdate
 echo Add Cumulative Update
-if exist %Update%\CU\*.psf for /f "tokens=*" %%i in (' dir /aa /b %Update%\CU ^| findstr .cab ^| %sed% -e 's/.cab//g' ') do (
-    %PSFExtractor% %Update%\CU\%%i.cab >NUL 2>&1
-    %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\CU\%%i %Dism-Extra%
-    rmdir /q /s %Update%\CU\%%i
-) else ( %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\CU %Dism-Extra% )
+for /f "tokens=*" %%i in (' dir /aa /b %Update%\CU ^| findstr .cab ^| %sed% -e 's/.cab//g'') do (
+    if exist %Update%\CU\%%i\ (
+        %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\CU\%%i %Dism-Extra%
+        rmdir /q /s %Update%\CU\%%i >NUL 2>&1
+    ) else (
+        %PSFExtractor% %Update%\CU\%%i.cab >NUL 2>&1
+        %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\CU\%%i %Dism-Extra% 
+    ) 
+)
 goto :eof
 
 :Update-FeatureExperiencePack
