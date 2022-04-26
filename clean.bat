@@ -24,6 +24,9 @@ SET "Update=%~dp0packages\U"
 SET "wimlib-imagex=%Bin%\bin\wimlib-imagex\wimlib-imagex.exe"
 SET "z7=%Bin%\bin\7z\7z.exe"
 
+echo Prepare Update
+call :Prepare-Update
+
 echo Processing WinRE.wim
 call :Mount-Image %Image%\winre.wim 1
 call :Update-ServicingStackDynamicUpdate
@@ -57,6 +60,7 @@ call :Capture-Image %Build%\install.wim "Windows 11 Pro" %Bin%\lists\ExclusionLi
 call :UnMount
 
 echo Final Processing
+call :Cleanup-UpdateFile
 call :Wimlib-Imagex-Command %Build%\install.wim "add '%Build%\winre.wim' '\windows\system32\recovery\winre.wim'"
 call :Wimlib-Imagex-Command %Build%\install.wim "add '%Packs%\NetFX35' '\windows\Addition\NetFX35'"
 call :Wimlib-Imagex-Info "%Build%\install.wim" "1" "Windows 11 Pro" "Windows 11 Pro" "Professional" "Windows 11 Professional"
@@ -82,6 +86,12 @@ goto :eof
 :Capture-Image
 echo Capture-Image [%~2]
 %Dism% /Capture-Image /ImageFile:%~1 /CaptureDir:%MT% /Name:"%~2" /Description="%~2" /ConfigFile:%~3 %~4 %Dism-Extra%
+goto :eof
+
+:Cleanup-UpdateFile
+echo Cleanup UpdateFile
+if exist %Update%\CU\*.psf for /f "delims=" %%i in (' dir /aa /b %Update%\CU ^| findstr .cab ^| %sed% -e 's/.cab//g' ') do ( call :Remove-Folder "%Update%\CU\%%i\" )
+if exist %Update%\SSU\*.psf for /f "delims=" %%i in (' dir /aa /b %Update%\SSU ^| findstr .cab ^| %sed% -e 's/.cab//g' ') do ( call :Remove-Folder "%Update%\SSU\%%i\" )
 goto :eof
 
 :Copy-Addition
@@ -121,6 +131,19 @@ reg load HKLM\MT_DRIVERS "%MT-Windows-System32%\config\DRIVERS" >NUL
 reg load HKLM\MT_NTUSER "%MT%\Users\Default\ntuser.dat" >NUL
 reg load HKLM\MT_SOFTWARE "%MT-Windows-System32%\config\SOFTWARE" >NUL
 reg load HKLM\MT_SYSTEM "%MT-Windows-System32%\config\SYSTEM" >NUL
+goto :eof
+
+:Prepare-Update
+if exist %Update%\CU\*.psf for /f "delims=" %%i in (' dir /aa /b %Update%\CU ^| findstr .cab ^| %sed% -e 's/.cab//g' ') do (
+    echo Transform CumulativeUpdate
+    call :Remove-Folder "%Update%\CU\%%i\"
+    %PSFExtractor% %Update%\CU\%%i.cab >NUL 2>&1
+)
+if exist %Update%\SSU\*.psf for /f "delims=" %%i in (' dir /aa /b %Update%\SSU ^| findstr .cab ^| %sed% -e 's/.cab//g' ') do (
+    echo Transform ServicingStackDynamicUpdate
+    call :Remove-Folder "%Update%\SSU\%%i\"
+    %PSFExtractor% %Update%\SSU\%%i.cab >NUL 2>&1
+)
 goto :eof
 
 :Remove-Appx
@@ -220,10 +243,8 @@ echo Add Cumulative Update
 for /f "tokens=*" %%i in (' dir /aa /b %Update%\CU ^| findstr .cab ^| %sed% -e 's/.cab//g'') do (
     if exist %Update%\CU\%%i\ (
         %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\CU\%%i %Dism-Extra%
-        rmdir /q /s %Update%\CU\%%i >NUL 2>&1
     ) else (
-        %PSFExtractor% %Update%\CU\%%i.cab >NUL 2>&1
-        %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\CU\%%i %Dism-Extra% 
+        %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\CU %Dism-Extra% 
     ) 
 )
 goto :eof
@@ -245,11 +266,13 @@ goto :eof
 
 :Update-ServicingStackDynamicUpdate
 echo Add Servicing Stack Dynamic Update
-if exist %Update%\SSU\*.psf for /f "delims=" %%i in (' dir /aa /b %Update%\SSU ^| findstr .cab ^| %sed% -e 's/.cab//g' ') do (
-    %PSFExtractor% %Update%\SSU\%%i.cab >NUL 2>&1
-    %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\SSU\%%i %Dism-Extra%
-    rmdir /q /s %Update%\SSU\%%i
-) else ( %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\SSU %Dism-Extra% )
+for /f "tokens=*" %%i in (' dir /aa /b %Update%\SSU ^| findstr .cab ^| %sed% -e 's/.cab//g'') do (
+    if exist %Update%\SSU\%%i\ (
+        %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\SSU\%%i %Dism-Extra%
+    ) else (
+        %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\SSU %Dism-Extra% 
+    ) 
+)
 goto :eof
 
 :Wimlib-Imagex-Command
