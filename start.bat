@@ -28,6 +28,7 @@ rmdir /q /s %~dp0build 2>NUL
 rmdir /q /s %~dp0mount 2>NUL
 mkdir %~dp0build 2>NUL
 mkdir %~dp0mount 2>NUL
+mkdir %~dp0tmp 2>NUL
 goto :eof
 
 :Prepare-Addition
@@ -36,12 +37,10 @@ if not exist %Addition%\Runtime\DirectX ( mkdir %Addition%\Runtime\DirectX 2>NUL
 if not exist %Addition%\Runtime\VC++ ( mkdir %Addition%\Runtime\VC++ 2>NUL )
 if not exist %Addition%\Registry\*.reg (
     echo Preparing Registry Files
-    mkdir %~dp0tmp 2>NUL
     for /f "delims=" %%i in (' dir /aa /b %Registry% ^| findstr .reg ') do (
     %sed% -e 's/HKLM\\\MT_SOFTWARE/HKEY_LOCAL_MACHINE\\\SOFTWARE/g' -e 's/HKLM\\\MT_NTUSER/HKEY_CURRENT_USER/g' -e 's/HKLM\\\MT_DEFAULT/HKEY_USERS\\\.DEFAULT/g' -e 's/HKLM\\\MT_SYSTEM\\\ControlSet001/HKEY_LOCAL_MACHINE\\\SYSTEM\\\CurrentControlSet/g' -e 's/HKLM\\\MT_SYSTEM/HKEY_LOCAL_MACHINE\\\SYSTEM/g' "%Registry%\%%i" > "tmp\%%i"
     PowerShell -Command "& { get-content "tmp\%%i" -encoding utf8 | set-content "%Addition%\Registry\%%i" -encoding unicode }"
     )
-    rmdir /q /s %~dp0tmp 2>NUL
 )
 if exist %Addition%\Runtime\DirectX\*.exe (
     if exist %Addition%\Runtime\DirectX\*.aria2 (

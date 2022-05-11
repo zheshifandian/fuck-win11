@@ -4,7 +4,7 @@ pushd "%~dp0"
 SET "Bin=%~dp0bin"
 SET "Build=%~dp0build"
 SET "Dism=%Bin%\bin\Dism\dism.exe"
-SET "Dism-Extra=/English /LogLevel:3 /NoRestart /Quiet"
+SET "Dism-Extra=/English /LogLevel:3 /NoRestart /ScratchDir:%~dp0tmp /Quiet"
 SET "Image=%~dp0image"
 SET "ImageLanguage=zh-CN"
 SET "Lists=%Bin%\lists"
@@ -69,6 +69,7 @@ call :Export-ESD %Build%\install.wim %Build%\install.esd
 for /f "delims=" %%i in (' findstr /i . %Lists%\RemoveJunkWim.txt 2^>NUL ') do ( call :Remove-File "%Build%\%%i" )
 for /f "delims=" %%i in (' dir /aa /b %~dp0bin\Addition\Registry 2^>NUL ') do ( call :Remove-File "%~dp0bin\Addition\Registry\%%i" )
 call :Remove-Folder "%MT%"
+call :Remove-Folder "%~dp0tmp"
 
 pause
 exit
