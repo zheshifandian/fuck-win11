@@ -64,7 +64,6 @@ call :Cleanup-UpdateFile
 call :Wimlib-Imagex-Command %Build%\install.wim "add '%Build%\winre.wim' '\windows\system32\recovery\winre.wim'"
 call :Wimlib-Imagex-Command %Build%\install.wim "add '%Packs%\NetFX35' '\windows\Addition\NetFX35'"
 call :Wimlib-Imagex-Info "%Build%\install.wim" "1" "Windows 11 Pro" "Windows 11 Pro" "Professional" "Windows 11 Professional"
-call :Wimlib-Imagex-Optimize %Build%\install.wim lzx
 call :Export-ESD %Build%\install.wim %Build%\install.esd
 for /f "delims=" %%i in (' findstr /i . %Lists%\RemoveJunkWim.txt 2^>NUL ') do ( call :Remove-File "%Build%\%%i" )
 for /f "delims=" %%i in (' dir /aa /b %~dp0bin\Addition\Registry 2^>NUL ') do ( call :Remove-File "%~dp0bin\Addition\Registry\%%i" )
