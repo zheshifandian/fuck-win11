@@ -51,6 +51,7 @@
         'Remove-WindowsImage',
         'Remove-WindowsPackage',
         'Repair-WindowsImage',
+        'Save-SoftwareInventory',
         'Save-WindowsImage',
         'Set-AppXProvisionedDataFile',
         'Set-NonRemovableAppsPolicy',
