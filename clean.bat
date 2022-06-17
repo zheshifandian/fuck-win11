@@ -39,14 +39,13 @@ call :Wimlib-Imagex-Optimize %Build%\winre.wim lzx
 
 echo Processing Install.wim
 call :Mount-Image %Image%\install.wim 1
-call :Update-SafeOSDynamicUpdate
 call :Update-ServicingStackDynamicUpdate
+call :Update-SafeOSDynamicUpdate
 call :Update-CumulativeUpdate
 call :Update-FeatureExperiencePack
 call :ResetBase
 
 echo Processing Installa.wim
-xcopy "%Bin%\hosts" "%MT-Windows-System32%\drivers\etc\" /Y >NUL
 xcopy "%Bin%\Restart.bat" "%MT-Users%\Default\Desktop\" /Y >NUL
 xcopy "%Bin%\Unattend.xml" "%MT-Windows%\Panther\" /Y >NUL
 for /f "delims=" %%i in (' findstr /i . %Lists%\RemoveAppx.txt 2^>NUL ') do ( call :Remove-Appx "%%i" )
