@@ -126,6 +126,7 @@ Windows Registry Editor Version 5.00
 
 [HKLM\MT_SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE]
 "DisableVoice"=dword:00000001
+"BypassNRO"=dword:00000001
 
 [HKLM\MT_SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Associations]
 "ModRiskFileTypes"=".bat;.exe;.reg;.vbs;.chm;.msi;.js;.cmd"

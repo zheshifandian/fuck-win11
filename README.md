@@ -1,2 +1,2 @@
 # win11lite
-support 22000.x
+support 22621.x

@@ -1,4 +1,3 @@
-MediaPlayback
 MSRDC-Infrastructure
 Printing-Foundation-InternetPrinting-Client
 Printing-PrintToPDFServices-Features

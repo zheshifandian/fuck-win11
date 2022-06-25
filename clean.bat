@@ -30,7 +30,6 @@ call :Prepare-Update
 echo Processing WinRE.wim
 call :Mount-Image %Image%\winre.wim 1
 call :Update-ServicingStackDynamicUpdate
-call :Update-SafeOSDynamicUpdate
 call :Update-CumulativeUpdate
 call :ResetBase
 call :Capture-Image %Build%\winre.wim "Microsoft Windows Recovery Environment (x64)" %Lists%\ExclusionList.ini /Bootable
@@ -40,15 +39,12 @@ call :Wimlib-Imagex-Optimize %Build%\winre.wim lzx
 echo Processing Install.wim
 call :Mount-Image %Image%\install.wim 1
 call :Update-ServicingStackDynamicUpdate
-call :Update-SafeOSDynamicUpdate
 call :Update-CumulativeUpdate
-call :Update-FeatureExperiencePack
 call :ResetBase
 
 echo Processing Installa.wim
 xcopy "%Bin%\Restart.bat" "%MT-Users%\Default\Desktop\" /Y >NUL
 xcopy "%Bin%\Unattend.xml" "%MT-Windows%\Panther\" /Y >NUL
-for /f "delims=" %%i in (' findstr /i . %Lists%\RemoveAppx.txt 2^>NUL ') do ( call :Remove-Appx "%%i" )
 for /f "delims=" %%i in (' findstr /i . %Lists%\RemoveCapability.txt 2^>NUL ') do ( call :Remove-Capability "%%i" )
 call :Apply-Unattend %Bin%\Unattend.xml
 call :Copy-Addition
