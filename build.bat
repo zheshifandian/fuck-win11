@@ -1,13 +1,12 @@
 @echo off
 pushd "%~dp0"
 
-SET "Bin=%~dp0bin"
 SET "Build=%~dp0build"
-SET "Dism=%Bin%\bin\Dism\dism.exe"
+SET "Dism=%~dp0bin\bin\Dism\dism.exe"
 SET "Dism-Extra=/English /LogLevel:3 /NoRestart /ScratchDir:%~dp0tmp /Quiet"
 SET "Image=%~dp0image"
 SET "ImageLanguage=zh-CN"
-SET "Lists=%Bin%\lists"
+SET "Lists=%~dp0bin\lists"
 SET "MT=%~dp0mount"
 SET "MT-Users=%MT%\Users"
 SET "MT-Windows=%MT%\Windows"
@@ -18,13 +17,17 @@ SET "MT-Windows-System32-DriverStore-FileRepository=%MT-Windows-System32-DriverS
 SET "MT-Windows-SysWOW64=%MT-Windows%\SysWOW64"
 SET "MT-Windows-WinSxS=%MT-Windows%\WinSxS"
 SET "Packs=%~dp0packages\P"
-SET "PSFExtractor=%Bin%\bin\PSF\PSFExtractor.exe"
-SET "Registry=%Bin%\Registry"
+SET "PSFExtractor=%~dp0bin\bin\PSF\PSFExtractor.exe"
 SET "Update=%~dp0packages\U"
-SET "wimlib-imagex=%Bin%\bin\wimlib-imagex\wimlib-imagex.exe"
-SET "z7=%Bin%\bin\7z\7z.exe"
+SET "wimlib-imagex=%~dp0bin\bin\wimlib-imagex\wimlib-imagex.exe"
+SET "z7=%~dp0bin\bin\7z\7z.exe"
 
-echo Prepare Update
+echo Prepare
+if exist %~dp0mount\windows (
+    echo Unmounting mounted Image
+    Dism /Unmount-Wim /MountDir:%~dp0mount /Discard /Quiet
+)
+call :Prepare
 call :Prepare-Update
 
 echo Processing WinRE.wim
@@ -42,16 +45,16 @@ call :Update-ServicingStackDynamicUpdate
 call :Update-CumulativeUpdate
 call :ResetBase
 
-echo Processing Installa.wim
-xcopy "%Bin%\Restart.bat" "%MT-Users%\Default\Desktop\" /Y >NUL
-xcopy "%Bin%\Unattend.xml" "%MT-Windows%\Panther\" /Y >NUL
+echo Processing Install.wim
+xcopy "%~dp0bin\Restart.bat" "%MT-Users%\Default\Desktop\" /Y >NUL
+xcopy "%~dp0bin\Unattend.xml" "%MT-Windows%\Panther\" /Y >NUL
 for /f "delims=" %%i in (' findstr /i . %Lists%\RemoveCapability.txt 2^>NUL ') do ( call :Remove-Capability "%%i" )
-call :Apply-Unattend %Bin%\Unattend.xml
+call :Apply-Unattend %~dp0bin\Unattend.xml
 call :Copy-Addition
 call :Import-Reg "%Registry%"
 call :Remove-Feature
 call :ResetBase
-call :Capture-Image %Build%\install.wim "Windows 11 Pro" %Bin%\lists\ExclusionList.ini
+call :Capture-Image %Build%\install.wim "Windows 11 Pro" %~dp0bin\lists\ExclusionList.ini
 call :UnMount
 
 echo Final Processing
@@ -85,14 +88,13 @@ goto :eof
 
 :Cleanup-UpdateFile
 echo Cleanup UpdateFile
-if exist %Update%\CU\*.psf for /f "delims=" %%i in (' dir /aa /b %Update%\CU ^| findstr .cab ^| %sed% -e 's/.cab//g' ') do ( call :Remove-Folder "%Update%\CU\%%i\" )
-if exist %Update%\SSU\*.psf for /f "delims=" %%i in (' dir /aa /b %Update%\SSU ^| findstr .cab ^| %sed% -e 's/.cab//g' ') do ( call :Remove-Folder "%Update%\SSU\%%i\" )
+for /f "delims=" %%i in (' dir /ad /b %Update%\CU ') do ( call :Remove-Folder "%Update%\CU\%%i\" )
 goto :eof
 
 :Copy-Addition
-xcopy /e /s "%Bin%\Addition" "%MT-Windows%\Addition\" /Y >NUL
-%z7% x "%MT-Windows%\Addition\Runtime\DirectX\DirectX.exe" -o"%MT-Windows%\Addition\Runtime\DirectX" -aoa >NUL 2>&1
-del /q /s "%Bin%\Addition\Registry" >NUL 2>&1
+xcopy /e /s "%~dp0bin\Addition" "%MT-Windows%\Addition\" /Y >NUL
+%z7% x "%MT-Windows%\Addition\Runtime\DirectX\DirectX.exe" -o "%MT-Windows%\Addition\Runtime\DirectX" -aoa >NUL 2>&1
+del /q /s "%~dp0bin\Addition\Registry" >NUL 2>&1
 del /q /s "%MT-Windows%\Addition\Runtime\DirectX\DirectX.exe" >NUL 2>&1
 goto :eof
 
@@ -128,16 +130,18 @@ reg load HKLM\MT_SOFTWARE "%MT-Windows-System32%\config\SOFTWARE" >NUL
 reg load HKLM\MT_SYSTEM "%MT-Windows-System32%\config\SYSTEM" >NUL
 goto :eof
 
+:Prepare
+rmdir /q /s %~dp0build 2>NUL
+rmdir /q /s %~dp0mount 2>NUL
+mkdir %~dp0build 2>NUL
+mkdir %~dp0mount 2>NUL
+mkdir %~dp0tmp 2>NUL
+goto :eof
+
 :Prepare-Update
-if exist %Update%\CU\*.psf for /f "delims=" %%i in (' dir /aa /b %Update%\CU ^| findstr .cab ^| %sed% -e 's/.cab//g' ') do (
+for /f "delims=" %%i in (' dir /aa /b %Update%\CU ^| findstr .cab ') do (
     echo Transform CumulativeUpdate
-    call :Remove-Folder "%Update%\CU\%%i\"
-    %PSFExtractor% %Update%\CU\%%i.cab >NUL 2>&1
-)
-if exist %Update%\SSU\*.psf for /f "delims=" %%i in (' dir /aa /b %Update%\SSU ^| findstr .cab ^| %sed% -e 's/.cab//g' ') do (
-    echo Transform ServicingStackDynamicUpdate
-    call :Remove-Folder "%Update%\SSU\%%i\"
-    %PSFExtractor% %Update%\SSU\%%i.cab >NUL 2>&1
+    %PSFExtractor% %Update%\CU\%%i >NUL 2>&1
 )
 goto :eof
 
@@ -178,7 +182,7 @@ rmdir /q /s "%~1" >NUL 2>&1
 goto :eof
 
 :Remove-Feature
-for /f "delims=" %%i in (' findstr /i . %Bin%\lists\RemoveFeature.txt 2^>NUL ') do (
+for /f "delims=" %%i in (' findstr /i . %~dp0bin\lists\RemoveFeature.txt 2^>NUL ') do (
     echo Remove Feature [%%i]
     %Dism% /Image:%MT% /Disable-Feature /FeatureName:"%%i" /Remove %Dism-Extra%
 )
@@ -235,13 +239,7 @@ goto :eof
 
 :Update-CumulativeUpdate
 echo Add Cumulative Update
-for /f "tokens=*" %%i in (' dir /aa /b %Update%\CU ^| findstr .cab ^| %sed% -e 's/.cab//g'') do (
-    if exist %Update%\CU\%%i\ (
-        %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\CU\%%i %Dism-Extra%
-    ) else (
-        %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\CU %Dism-Extra% 
-    ) 
-)
+for /f "tokens=*" %%i in (' dir /ad /b %Update%\CU ') do ( %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\CU\%%i %Dism-Extra% )
 goto :eof
 
 :Update-FeatureExperiencePack
@@ -261,13 +259,7 @@ goto :eof
 
 :Update-ServicingStackDynamicUpdate
 echo Add Servicing Stack Dynamic Update
-for /f "tokens=*" %%i in (' dir /aa /b %Update%\SSU ^| findstr .cab ^| %sed% -e 's/.cab//g'') do (
-    if exist %Update%\SSU\%%i\ (
-        %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\SSU\%%i %Dism-Extra%
-    ) else (
-        %Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\SSU %Dism-Extra% 
-    ) 
-)
+%Dism% /Image:%MT% /Add-Package /PackagePath:%Update%\SSU %Dism-Extra% 
 goto :eof
 
 :Wimlib-Imagex-Command

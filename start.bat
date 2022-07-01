@@ -12,24 +12,11 @@ SET "sed=%~dp0bin\bin\sed\sed.exe"
 
 if not exist %~dp0image\install.wim ( echo install.wim doesn't exist ) & pause exit
 if not exist %~dp0image\winre.wim ( echo winre.wim doesn't exist ) & pause exit
-if exist %~dp0mount\windows (
-    echo Unmounting mounted Image
-    Dism /Unmount-Wim /MountDir:%~dp0mount /Discard /Quiet
-    call :Prepare
-) else ( call :Prepare )
 
 call :Prepare-Addition
-call "%~dp0bin\bin\NSudo.exe" -U:T -P:E "%~dp0clean.bat"
+call "%~dp0bin\bin\NSudo.exe" -U:T -P:E "%~dp0build.bat"
 
 exit
-
-:Prepare
-rmdir /q /s %~dp0build 2>NUL
-rmdir /q /s %~dp0mount 2>NUL
-mkdir %~dp0build 2>NUL
-mkdir %~dp0mount 2>NUL
-mkdir %~dp0tmp 2>NUL
-goto :eof
 
 :Prepare-Addition
 if not exist %Addition%\Registry ( mkdir %Addition%\Registry 2>NUL )
