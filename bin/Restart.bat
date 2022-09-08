@@ -20,12 +20,6 @@ Dism /Online /Set-ReservedStorageState /State:Disabled /Quiet
 
 powercfg /h off
 
-%NSudo% -U:T -P:E REG DELETE "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /va /f
-%NSudo% -U:T -P:E REG DELETE "HKLM\SAM\SAM\Domains\Account\Users\Names\DefaultAccount" /f
-%NSudo% -U:T -P:E REG DELETE "HKLM\SAM\SAM\Domains\Account\Users\Names\WDAGUtilityAccount" /f
-%NSudo% -U:T -P:E REG DELETE "HKLM\SAM\SAM\Domains\Account\Users\000001F7" /f
-%NSudo% -U:T -P:E REG DELETE "HKLM\SAM\SAM\Domains\Account\Users\000001F8" /f
-
 %NSudo% -U:T -P:E REG ADD "HKCU\SOFTWARE\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
 %NSudo% -U:T -P:E REG ADD "HKLM\SOFTWARE\Classes\Applications\photoviewer.dll\shell\open\command" /ve /t REG_EXPAND_SZ /d "%%SystemRoot%%\System32\rundll32.exe \"%%ProgramFiles%%\Windows Photo Viewer\PhotoViewer.dll\", ImageView_Fullscreen %%1" /f
 %NSudo% -U:T -P:E REG ADD "HKLM\SOFTWARE\Classes\Applications\photoviewer.dll\shell\print\command" /ve /t REG_EXPAND_SZ /d "%%SystemRoot%%\System32\rundll32.exe \"%%ProgramFiles%%\Windows Photo Viewer\PhotoViewer.dll\", ImageView_Fullscreen %%1" /f
