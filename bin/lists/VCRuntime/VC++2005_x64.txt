@@ -1,9 +1,4 @@
-https://download.microsoft.com/download/4/A/2/4A22001F-FA3B-4C13-BF4E-42EC249D51C4/vcredist_x86.EXE
-    dir=bin\Addition\Runtime\VC++
-    out=VC++2005_x86.exe
-    checksum=sha-1=2BE00EE9B5694F2AAEB5B9A29EAF95B02E42C264
-
-https://download.microsoft.com/download/4/A/2/4A22001F-FA3B-4C13-BF4E-42EC249D51C4/vcredist_x64.EXE
+https://download.microsoft.com/download/8/B/4/8B42259F-5D70-43F4-AC2E-4B208FD8D66A/vcredist_x64.exe
     dir=bin\Addition\Runtime\VC++
     out=VC++2005_x64.exe
-    checksum=sha-1=A45CA000EC44374F256B9AA12DD49207C11FD6F2
+    checksum=sha-1=F4D74643A0E117EA80B2C7EBCD908A6DD26AA9EA

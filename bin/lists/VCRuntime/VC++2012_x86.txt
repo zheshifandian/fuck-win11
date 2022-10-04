@@ -1,10 +1,4 @@
-https://download.microsoft.com/download/9/C/D/9CD480DC-0301-41B0-AAAB-FE9AC1F60237/VSU4/vcredist_x86.exe
+https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe
     dir=bin\Addition\Runtime\VC++
     out=VC++2012_x86.exe
-    checksum=sha-1=649E7FFE339F67F98140A1AEF8951F6546AB7F9C
-
-https://download.microsoft.com/download/9/C/D/9CD480DC-0301-41B0-AAAB-FE9AC1F60237/VSU4/vcredist_x64.exe
-    dir=bin\Addition\Runtime\VC++
-    out=VC++2012_x64.exe
-    checksum=sha-1=D8093FCA52CE84545834F7AAB95B0A891E85A308
-    
+    checksum=sha-1=96B377A27AC5445328CBAAE210FC4F0AAA750D3F

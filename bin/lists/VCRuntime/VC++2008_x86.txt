@@ -2,8 +2,3 @@ https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8
     dir=bin\Addition\Runtime\VC++
     out=VC++2008_x86.exe
     checksum=sha-1=0940EC60DCC3162E482C1A797CA033D5996AB256
-
-https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x64.exe
-    dir=bin\Addition\Runtime\VC++
-    out=VC++2008_x64.exe
-    checksum=sha-1=CE8FF6572E86B0BBA39D88FA3A6D56B59100613D

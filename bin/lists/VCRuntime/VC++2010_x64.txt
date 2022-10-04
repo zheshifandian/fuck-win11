@@ -1,9 +1,4 @@
-https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x86.exe
-    dir=bin\Addition\Runtime\VC++
-    out=VC++2010_x86.exe
-    checksum=sha-1=2222FC008E469FEC77D0D291877F357C6E1EB16D
-
-https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x64.exe
+https://download.microsoft.com/download/E/E/0/EE05C9EF-A661-4D9E-BCE2-6961ECDF087F/vcredist_x64.exe
     dir=bin\Addition\Runtime\VC++
     out=VC++2010_x64.exe
-    checksum=sha-1=8691972F0A5BF919701AC3B80FB693FC715420C2
+    checksum=sha-1=72FC567A1B584086974CE05EF1631CBBA988710B

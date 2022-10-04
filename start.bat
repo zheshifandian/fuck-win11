@@ -13,7 +13,7 @@ SET "sed=%~dp0bin\bin\sed\sed.exe"
 if not exist %~dp0image\install.wim ( echo install.wim doesn't exist ) & pause exit
 if not exist %~dp0image\winre.wim ( echo winre.wim doesn't exist ) & pause exit
 
-mkdir tmp
+if exist %~dp0tmp ( rmdir %~dp0tmp 2>NUL ) & mkdir %~dp0tmp
 
 call :Prepare-Addition
 call "%~dp0bin\bin\NSudo.exe" -U:T -P:E "%~dp0build.bat"
