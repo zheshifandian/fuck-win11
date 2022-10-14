@@ -22,7 +22,6 @@ SET "Update=%~dp0packages\U"
 SET "wimlib-imagex=%~dp0bin\bin\wimlib-imagex\wimlib-imagex.exe"
 SET "Unpack=%~dp0bin\bin\7z\7z.exe"
 
-echo Prepare
 if exist %~dp0mount\windows (
     echo Unmounting mounted Image
     Dism /Unmount-Wim /MountDir:%~dp0mount /Discard /Quiet
