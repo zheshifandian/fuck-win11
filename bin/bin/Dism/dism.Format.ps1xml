@@ -133,9 +133,11 @@
                     $a = "Unknown"
                     if($_.Architecture -eq 0){ $a="x86" }
                     elseif($_.Architecture -eq 5) {$a="arm"}
-                    elseif($_.Architecture -eq 9) {$a="x64"}
                     elseif($_.Architecture -eq 6) {$a="ia64"}
+                    elseif($_.Architecture -eq 8) {$a="msil"}
+                    elseif($_.Architecture -eq 9) {$a="x64"}
                     elseif($_.Architecture -eq 11) {$a="neutral"}
+                    elseif($_.Architecture -eq 12) {$a="arm64"}
                     return $a
                   </ScriptBlock>
                 </ListItem>
@@ -243,8 +245,9 @@
                 $a = "Unknown"
                 if($_.Architecture -eq 0){ $a="x86" }
                 elseif($_.Architecture -eq 5) {$a="arm"}
-                elseif($_.Architecture -eq 9) {$a="x64"}
                 elseif($_.Architecture -eq 6) {$a="ia64"}
+                elseif($_.Architecture -eq 9) {$a="x64"}
+                elseif($_.Architecture -eq 12) {$a="arm64"}
                 return $a
                 </ScriptBlock>
               </ListItem>
@@ -325,8 +328,9 @@
                   $a = "Unknown"
                   if($_.Architecture -eq 0){ $a="x86" }
                   elseif($_.Architecture -eq 5) {$a="arm"}
-                  elseif($_.Architecture -eq 9) {$a="x64"}
                   elseif($_.Architecture -eq 6) {$a="ia64"}
+                  elseif($_.Architecture -eq 9) {$a="x64"}
+                  elseif($_.Architecture -eq 12) {$a="arm64"}
                   return $a
                 </ScriptBlock>
               </ListItem>
@@ -715,8 +719,9 @@
                     $a = "Unknown"
                     if($_.Architecture -eq 0){ $a="x86" }
                     elseif($_.Architecture -eq 5) {$a="arm"}
+                    elseif($_.Architecture -eq 6) {$a="ia64"}
                     elseif($_.Architecture -eq 9) {$a="x64"}
-                    elseif($_.Architecture -eq 6) {$a="ia64"}                  
+                    elseif($_.Architecture -eq 12) {$a="arm64"}
                     return $a
                 </ScriptBlock>
               </ListItem>
