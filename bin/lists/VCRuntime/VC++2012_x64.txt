@@ -2,4 +2,3 @@ https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9
     dir=bin\Addition\Runtime\VC++
     out=VC++2012_x64.exe
     checksum=sha-1=1A5D93DDDBC431AB27B1DA711CD3370891542797
-    

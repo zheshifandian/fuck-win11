@@ -2,4 +2,3 @@ https://download.visualstudio.microsoft.com/download/pr/10912041/cee5d6bca2ddbcd
     dir=bin\Addition\Runtime\VC++
     out=VC++2013_x64.exe
     checksum=sha-1=1194E6BF4153FA88F20B2A70AC15BC359ADA4EE2
-    

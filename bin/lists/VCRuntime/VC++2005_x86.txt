@@ -1,4 +1,4 @@
-https://download.microsoft.com/download/8/B/4/8B42259F-5D70-43F4-AC2E-4B208FD8D66A/vcredist_x86.exe
+https://gitlab.com/stdout12/adns/uploads/6e4cb29579c9ff812e79ffd7746d243a/vcredist_x86_8.0.50727.6229.exe
     dir=bin\Addition\Runtime\VC++
     out=VC++2005_x86.exe
-    checksum=sha-1=56AE8221E8024C8DEED430E01A6160795C64CF53
+    checksum=sha-1=A41AE16A1758AEDC41670E527EB02A2199EB576C

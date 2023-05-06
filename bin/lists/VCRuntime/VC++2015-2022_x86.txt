@@ -1,4 +1,4 @@
-https://download.visualstudio.microsoft.com/download/pr/f84eb94b-15bc-43e9-ada9-92068b7902ae/39EBE9EBC0FB5396603692A12D0D922E1918FCF2B0E6CC84FAF7B32079173501/VC_redist.x86.exe
+https://download.visualstudio.microsoft.com/download/pr/dc0441be-56f8-4a9a-b59b-2f251a8108e8/A44986BBB8519D78DD4C30C44878C0AF28643654082004BA3102789604AB23B1/VC_redist.x86.exe
     dir=bin\Addition\Runtime\VC++
     out=VC++2015-2022_x86.exe
-    checksum=sha-1=5C3F5E46A53F8783C81278E38621EE7F5429F98F
+    checksum=sha-1=A829F45F678A82BB07FE03C306D29267A6B45690

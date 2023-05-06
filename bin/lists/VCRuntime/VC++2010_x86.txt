@@ -1,4 +1,4 @@
-https://download.microsoft.com/download/E/E/0/EE05C9EF-A661-4D9E-BCE2-6961ECDF087F/vcredist_x86.exe
+http://download.microsoft.com/download/E/E/0/EE05C9EF-A661-4D9E-BCE2-6961ECDF087F/vcredist_x86.exe
     dir=bin\Addition\Runtime\VC++
     out=VC++2010_x86.exe
     checksum=sha-1=4C111A3019C77130FCA2F4D2FD62705D1B56C8EF
