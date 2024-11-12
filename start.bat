@@ -16,7 +16,7 @@ if not exist %~dp0image\winre.wim ( echo winre.wim doesn't exist ) & pause exit
 if exist %~dp0tmp ( rmdir /q /s %~dp0tmp 2>NUL ) else ( mkdir %~dp0tmp 2>NUL )
 
 call :Prepare-Addition
-call "%~dp0bin\bin\NSudo.exe" -U:T -P:E "%~dp0build.bat"
+call "%~dp0bin\bin\MinSudo.exe" -TI "%~dp0build.bat"
 
 exit
 
